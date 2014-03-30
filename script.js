@@ -122,11 +122,13 @@
         }
 
         var legendData = []
-        Object.keys(allFlowers).slice().map(function(d){ legendData.push(d+'(sold)') });
-        Object.keys(allFlowers).slice().map(function(d){ legendData.push(d+'(unsold)')});
+        Object.keys(allFlowers).slice().map(function(d){ 
+            legendData.push(d+'(sold)');
+            legendData.push(d+'(unsold)');
+        });
 
         var color = {};
-        var colorCandidates = ["#98abc5", "#dd4488", "#8a89a6", "#ffddee", "#7b6888", "#eebbdd", "#bb3377"];
+        var colorCandidates = ["#FFD900", "#FFF0AA", "#E47297", "#FFAEAE", "#44bbcc", "#88dddd", "#bb3377"];
         for(var i in legendData){
             color[legendData[i]] = colorCandidates[i];
         }
