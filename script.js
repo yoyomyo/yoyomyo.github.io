@@ -128,7 +128,7 @@
         });
 
         var color = {};
-        var colorCandidates = ["#FFD900", "#FFF0AA", "#E47297", "#FFAEAE", "#44bbcc", "#88dddd", "#bb3377"];
+        var colorCandidates = [ "#44bbcc", "#88dddd", "#E47297", "#FFAEAE",  "#FFD800", "#FFF0AA"];
         for(var i in legendData){
             color[legendData[i]] = colorCandidates[i];
         }
