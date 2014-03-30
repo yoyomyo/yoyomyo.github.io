@@ -126,7 +126,7 @@
         Object.keys(allFlowers).slice().map(function(d){ legendData.push(d+'(unsold)')});
 
         var color = {};
-        var colorCandidates = ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"];
+        var colorCandidates = ["#98abc5", "#dd4488", "#8a89a6", "#ffddee", "#7b6888", "#eebbdd", "#bb3377"];        
         for(var i in legendData){
             color[legendData[i]] = colorCandidates[i];
         }
