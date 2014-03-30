@@ -42,7 +42,7 @@
     var dates = Object.keys(allDates);
     var flowers = Object.keys(allFlowers);
     
-
+    // now have all flowers and all dates, populate the dates and flower checkboxes
     function getList(data){
         return '<li><label class="checkbox"><input type="checkbox" checked id = "' + data +'" value="'+ data +'">' + data + '</label></li>'
     }
@@ -57,11 +57,15 @@
     $('#soldOrUnsold').append((function(){return getList('sold')})());
     $('#soldOrUnsold').append((function(){return getList('unsold')})());
 
+    //initialize data filters
+    // var chosenDates = {'2/3/2012':1, '2/4/2012':1, '2/5/2012':1};
+    // var chosenFlowers = {'rose':1, 'dandelion':1};
     var chosenDates = allDates;
     var chosenFlowers = allFlowers;
     var sold = true;
     var unsold = true;    
 
+    //update data filters when user changes checkbox selection
     $('#dates').change(function() {
         //get all checked dates
         var vals = {};
@@ -86,30 +90,15 @@
 
     $('#soldOrUnsold').change(function() {
         //get sold or unsold
-        if($( "#sold:checked" ).length === 0){
-            sold = false;
-        }else{
-            sold = true;
-        }
-        if($( "#unsold:checked" ).length === 0){
-            unsold = false;
-        }else{
-            unsold = true;
-        }
-
+        sold = !($( "#sold:checked" ).length === 0)
+        unsold = !($( "#unsold:checked" ).length === 0)
         drawGraph();
     });
 
-    // user input
-    // var chosenDates = {'2/3/2012':1, '2/4/2012':1, '2/5/2012':1};
-    // var chosenFlowers = {'rose':1, 'dandelion':1};
 
-    //domain of x axis, dates
-    //domain of xx axis, flowers
-    //domain of y axis, sold, unsold or sold+unsold
-    //domain of color, flower, either sold or unsold
     function drawGraph(){
 
+        //a hack to clear the graph, thus no animation
         $('.chart').html("");
 
         var displayData = getDisplayData(chosenDates,chosenFlowers,sold,unsold);
@@ -121,12 +110,14 @@
             }       
         }
 
+        // each flower has two information: sold or unsold
         var legendData = []
         Object.keys(allFlowers).slice().map(function(d){ 
             legendData.push(d+'(sold)');
             legendData.push(d+'(unsold)');
         });
 
+        // asign color to different flowers
         var color = {};
         var colorCandidates = [ "#44bbcc", "#88dddd", "#E47297", "#FFAEAE",  "#FFD800", "#FFF0AA"];
         for(var i in legendData){
@@ -142,15 +133,17 @@
             width = 960 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
 
-        //param: array of dates, array of flowers, boolean sold, boolean unsold
-
+        // compute axis
+        //domain of x axis, dates
+        //domain of xx axis, flowers
+        //domain of y axis, sold, unsold or sold+unsold
         var x = d3.scale.ordinal()
             .domain(Object.keys(chosenDates))
             .rangeBands([10, width-100]);
 
         var xx = d3.scale.ordinal()
                 .domain(Object.keys(chosenFlowers))
-                .rangeRoundBands([30, x.rangeBand()-30]);
+                .rangeRoundBands([10, x.rangeBand()]);
 
         var y = d3.scale.linear()
             .domain([0, displayData.height])
@@ -179,6 +172,15 @@
             .attr("class", "y axis")
             .call(yAxis);
 
+        //tooltip for displaying additional information
+        var tooltip = d3.select("body")
+            .append("div")
+            .style("position", "absolute")
+            .style("z-index", "10")
+            .style("visibility", "hidden")
+            .text("");
+
+        // each group includes a number of flowers, group is organized by date
         var group = chart.selectAll(".dates")
             .data(displayDataArray)
             .enter().append("g")
@@ -186,13 +188,6 @@
             .attr("transform", function(d) { 
             return "translate(" + x(d.date) + ",0)"; 
         });
-
-        var tooltip = d3.select("body")
-            .append("div")
-            .style("position", "absolute")
-            .style("z-index", "10")
-            .style("visibility", "hidden")
-            .text("a simple tooltip");
 
         var bars = group.selectAll(".bar")
             .data(function(d) { return  convertToArray(d.value);})
@@ -222,6 +217,7 @@
                 return tooltip.style("visibility", "hidden");
             });
 
+        //add legend
         var legend = chart.selectAll(".legend")
             .data(legendData)
             .enter().append("g")
@@ -270,25 +266,23 @@
         return result;
     }
 
-    //convert a nested object to an array of key-value pairs
+    // convert a nested object to an array of key-value pairs
     function convertToArray(O){
         var result = []
         for(var key1 in O){
             for(var i in O[key1]){
                 var kv = {};
+                // the object passed in will have flower as key
                 kv.flower = key1;   
                 var obj = O[key1][i];
                 for(var key2 in obj){
-                    //console.log(key2);
-                    kv[key2+''] = obj[key2]
+                    kv[key2+''] = obj[key2];
                 }
                 result.push(kv);             
             }
         }
-        //console.log(result);
         return result;
     }
-
 
     drawGraph();
 })();
