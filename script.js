@@ -44,7 +44,7 @@
             temp[dates[i]] = 1;
         }
         chosenDates = temp;
-        
+
         flowers = Object.keys(allFlowers);
 
         $('#dates').html('');
@@ -287,12 +287,15 @@
     $('#data').html(JSON.stringify(jsonData));
     
     $('#saveDataChange').click(function(){
-        jsonData = JSON.parse($('#data').val());
-        $('#myModal').modal('hide'); 
-        console.log(dates);
-        updateData();
-        console.log(dates);
-        drawGraph();
+        try {
+            jsonData = JSON.parse($('#data').val());
+            $('#myModal').modal('hide'); 
+            updateData();
+            drawGraph();
+        }catch (e){
+            alert('The data entered cannot be parsed by JSON.');
+        }
     });
+
     
 })();
