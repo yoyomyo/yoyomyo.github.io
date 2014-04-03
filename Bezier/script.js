@@ -13,7 +13,7 @@ var dragged = false;
 var levelOfDetail = 20;
 
 
-var curve = new Curve();
+var curve = new Bezier();
 
 function getMousePos(e){
     var x = e.pageX - canvas.offsetLeft;
