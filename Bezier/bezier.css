@@ -1,8 +1,5 @@
-body{
- font-family: "Helvetica Neue", Helvetica, sans-serif; 
-}
-
 h1 { 
+  font-family: "Helvetica Neue", Helvetica, sans-serif; 
   font-size: 64px;
   font-weight: 300;
   letter-spacing: -2px;
@@ -51,4 +48,12 @@ h1 {
   font-size: 16px;
   font-weight: 300;
   vertical-align:top;
+}
+
+
+#instruction{
+  font-family: "Helvetica Neue", Helvetica, sans-serif; 
+  margin: 0 20px 40px 0;
+  color: #000;
+  font-size: 16px;
 }

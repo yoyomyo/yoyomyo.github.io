@@ -1,7 +1,7 @@
 //point class
 
-POINT_RADIUS = 8;
-TOLERANCE = 5;
+var POINT_RADIUS = 5;
+var TOLERANCE = 6;
 
 function Point(x,y){
     this.x = x;

@@ -18,17 +18,25 @@
         <div class="span3">
           <div class="sidebar-nav">
             <ul class="nav nav-list">
+                <div id="instruction">
+                  <p>
+                  <strong>Left click</strong> on the canvas to add a control point.
+<!--                   <strong>Right click</strong> on the canvas to remove a control point.
+ -->                  <strong>Drag</strong> a control point to change curve shape.
+                  </P>
+                </div>
+
                 <li class="nav-header">Select Curve Type</li>
                 <div id="curveType">
                   <div class="radio">
                     <label>
-                      <input type="radio" name="optionsRadios" id="type0" value="0" checked>
+                      <input type="radio" name="optionsRadios" id="type0" value="0">
                       Straight line
                     </label>
                   </div>
                   <div class="radio">
                     <label>
-                      <input type="radio" name="optionsRadios" id="type1" value="1">
+                      <input type="radio" name="optionsRadios" id="type1" value="1" checked>
                       Bezier
                     </label>
                   </div>
@@ -39,7 +47,7 @@
                     </label>
                   </div>
                 </div>
-                <li class="nav-header">Select level of detail</li>
+                <li class="nav-header">Select curve smoothness</li>
                 <div id="sliderWrapper">
                   <span id="levelOfDetail"></span>
                   <div id="slider">

@@ -36,7 +36,7 @@ Curve.prototype.connectTheDots = function(ctx){
     ctx.lineWidth=3;
     
     if(this.curveType === Curve.types.BEZIER  || this.curveType === Curve.types.B_SPLINE){
-        ctx.strokeStyle='#eee';
+        ctx.strokeStyle="rgba(100,100,100,0.1)";
     }else{
         ctx.strokeStyle='#000';
     }
