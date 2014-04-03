@@ -3,4 +3,10 @@ h1 {
   font-size: 64px;
   font-weight: 300;
   letter-spacing: -2px;
+  line-height: 70%;
+  color: black;
+}
+
+a{
+	text-decoration:none;
 }
