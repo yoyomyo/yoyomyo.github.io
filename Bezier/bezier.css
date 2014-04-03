@@ -1,5 +1,8 @@
-h1 {
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+body{
+ font-family: "Helvetica Neue", Helvetica, sans-serif; 
+}
+
+h1 { 
   font-size: 64px;
   font-weight: 300;
   letter-spacing: -2px;
@@ -28,6 +31,24 @@ h1 {
 }
 
 
-#data{
-  width: 100%; 
+/*canvas*/
+#canvas {
+  border: solid #eee;
+}
+
+#slider{
+  width:150px;
+  float:right;
+  margin-right:60px;
+  margin-top:5px;
+}
+
+#sliderWrapper{
+  margin-top:10px;
+}
+
+#levelOfDetail{
+  font-size: 16px;
+  font-weight: 300;
+  vertical-align:top;
 }

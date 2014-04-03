@@ -35,7 +35,7 @@ Curve.prototype.draw = function(ctx, levelOfDetails){
 Curve.prototype.connectTheDots = function(ctx){
     ctx.lineWidth=3;
     
-    if(this instanceof Bezier){
+    if(this.curveType === Curve.types.BEZIER  || this.curveType === Curve.types.B_SPLINE){
         ctx.strokeStyle='#eee';
     }else{
         ctx.strokeStyle='#000';
@@ -126,3 +126,97 @@ Bezier.prototype.deCasteljau = function(u, points){
     return ps[0][0];
 }
 
+
+
+
+
+// B-Spline
+function BSpline(){
+    Curve.call(this);
+    this.curveType = Curve.types.B_SPLINE
+}
+BSpline.prototype = Object.create(Curve.prototype);
+
+
+BSpline.prototype.draw = function(ctx, levelOfDetail){
+    
+    if(this.cPoints.length > 1)
+    {
+        this.lPoints=[];
+        for(var i = 0; i<this.cPoints.length-3; i++)
+        {
+            var p0 = this.cPoints[i];
+            var p1 = this.cPoints[i+1];
+            var p2 = this.cPoints[i+2];
+            var p3 = this.cPoints[i+3];
+
+            this.computeSegment(p0,p1,p2,p3,levelOfDetail);
+        }
+
+        for(var i=0; i<this.lPoints.length-1; i++)
+        {
+            this.drawLine(ctx, this.lPoints[i], this.lPoints[i+1]);
+        }
+
+    }
+    this.connectTheDots(ctx);
+}
+
+
+
+
+BSpline.prototype.calculatePoint = function(u, p0, p1, p2, p3)
+{
+
+    uu = u*u;
+    uuu = u*u*u;
+
+    b0 = -uuu+3*uu-3*u+1;
+    //float b0 =1;
+    b1 = 3*uuu-6*uu+4;
+    b2 = -3*uuu+3*uu+3*u+1;
+    b3 = uuu;
+
+    x = b0*p0.x;
+    x += b1*p1.x;
+    x += b2*p2.x;
+    x += b3*p3.x;
+
+    y = b0*p0.y;
+    y += b1*p1.y;
+    y += b2*p2.y;
+    y += b3*p3.y;
+
+    x = x/6.0;
+    y = y/6.0;
+
+    return new Point(x, y);
+}
+
+//here we are using uniform cubic bspline
+BSpline.prototype.computeSegment = function(p1,p2, p3, p4, levelOfDetail) {
+
+    var x,y;
+
+    x1 = (-p1.x + 3 * p2.x - 3 * p3.x + p4.x) / 6.0;
+    x2  = (3 * p1.x - 6 * p2.x + 3 * p3.x) / 6.0;
+    x3  = (-3 * p1.x + 3 * p3.x) / 6.0;
+    x4  = (p1.x + 4 * p2.x + p3.x) / 6.0;
+    y1  = (-p1.y + 3 * p2.y - 3 * p3.y + p4.y) / 6.0;
+    y2  = (3 * p1.y - 6 * p2.y + 3 * p3.y) / 6.0;
+    y3 = (-3 * p1.y + 3 * p3.y) / 6.0;
+    y4 = (p1.y + 4 * p2.y + p3.y) / 6.0;
+
+    for(var j = 0; j <= levelOfDetail; j++)
+    {
+        u = j/(levelOfDetail+0.0);
+        uu = u*u;
+        uuu = u*u*u;
+
+        x = uuu*x1 + uu*x2 + u*x3 +x4;
+        y = uuu*y1 + uu*y2 + u*y3 +y4;
+
+        this.lPoints.push(new Point(x,y));
+
+    }
+}

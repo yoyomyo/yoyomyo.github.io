@@ -1,8 +1,5 @@
-body{
- font-family: "Helvetica Neue", Helvetica, sans-serif; 
-}
-
-h1 { 
+h1 {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: 64px;
   font-weight: 300;
   letter-spacing: -2px;
@@ -31,14 +28,34 @@ h1 {
 }
 
 
-/*canvas*/
-#canvas {
-  border: solid #eee;
+#data{
+  width: 100%; 
 }
 
-#slider{
-  margin-top:10px;
-  width:150px;
-  float:right;
-  margin-right:20px;
+
+.chart text {
+  fill: black;
+  font: 13px sans-serif;
+  text-anchor: end;
+}
+
+.axis text {
+  font: 13px sans-serif;
+  fill: black;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.legend text{
+  font: 13px sans-serif;
+  fill: black;
 }

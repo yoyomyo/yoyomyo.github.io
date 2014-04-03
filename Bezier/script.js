@@ -81,6 +81,9 @@ $('#curveType').change(function(){
     }else if(type === Curve.types.BEZIER){
         curve = new Bezier();
         curve.cPoints = cPoints; 
+    }else if(type === Curve.types.B_SPLINE){
+        curve = new BSpline();
+        curve.cPoints = cPoints;         
     }
     redraw();
 })
