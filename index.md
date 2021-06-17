@@ -3,8 +3,10 @@ layout: default
 ---
 # About
 
-Hello. My name is Yun (pronounced e-wing). I love 🍪 and pretty things 🦋.
-This is where I take notes.
+Hello. My name is Yun (pronounced e-wing). 
+I am a visually and food motivated software engineer living in Oakland.
+I love languages and patterns.
+This blog is where I document the things I read/created. 
 
 # Projects
 
