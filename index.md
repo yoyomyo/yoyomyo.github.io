@@ -23,3 +23,5 @@ Convert drawings into UI with the help of OpenCV.
 # Notes
 
 [Reading as a Way of Bonding](./reading/2021/06/15/Reading-as-a-way-of-bonding.html)
+
+[Sympathy, Empathy, Compassion](./reading/2021/11/02/sympathy-empathy-compassion.html)

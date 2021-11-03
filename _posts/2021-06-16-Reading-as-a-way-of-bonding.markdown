@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Reading as a Way of Bonding"
-auther: Yun
+author: Yun
 date:   2021-06-15 11:53:10 -0700
 categories: reading
 ---
