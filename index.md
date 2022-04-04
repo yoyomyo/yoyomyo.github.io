@@ -16,9 +16,6 @@ My attempt to move an old drawing project from C++ to JavaScript.
 [360°Panorama](http://cs.brown.edu/courses/cs129/results/final/yunmiao/)
 Stitch photos to make panorama, with cylindrical projection.
 
-[Flowershop](./flowershop.html)
-My attempt to learn D3.
-
 [Shape detector](https://dl.acm.org/doi/10.1007/s10515-017-0216-3)
 Convert hand drawings into UI with the help of OpenCV.
 
