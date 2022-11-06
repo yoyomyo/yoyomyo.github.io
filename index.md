@@ -9,6 +9,8 @@ I love languages and patterns.
 This site is where I document the things I read/created. 
 
 # Projects
+[Cross-device](https://firebase.google.com/codelabs/cross-device-controller#0)
+Server driven realtime cross device communication built with Firebase and Flutter.
 
 [Bezier](./bezier.html)
 My attempt to move an old drawing project from C++ to JavaScript.
